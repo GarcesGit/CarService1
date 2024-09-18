@@ -28,7 +28,3 @@ function animaionItem(i) {
         setTimeout(text, 200);
     }
 }
-
-$(document).ready(function () {
-    $("#phone").mask("+7 (999) 999-99-99"); // Маска для телефона
-});
