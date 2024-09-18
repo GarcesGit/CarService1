@@ -15,6 +15,9 @@
         <link rel="stylesheet" href="releases/v5.6.3/css/all.css" />
         <link rel="shortcut icon" href="./images/logo.ico" />
         <script defer="" src="releases/v5.0.8/js/all.js"></script>
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script src="scripts/jquery.datetimepicker.full.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css" />
     </head>
     <body>
         <header>
@@ -32,7 +35,6 @@
                     <img src="images/citroen_logo.jpg" />
                 </div>
             </div>
-
             <div class="header-item-group-right">
                 <div class="contact-item">
                     <h3>Адрес:</h3>
@@ -55,51 +57,38 @@
                 </div>
             </div>
         </header>
-        <section class="main-foto">
-            <div class="oil-wrap">
-                <div class="main-text">
-                    <h1>
-                        КАЧЕСТВЕННЫЙ СЕРВИС АВТОМОБИЛЕЙ<br />
-                        PEUGEOT CITROEN
-                    </h1>
-                    <p>
-                        Специализированное СТО "SibirFRANService".<br />
-                        Берем в работу и устраняем сложные поломки, от которых другие СТО
-                        отказались!
-                    </p>
-                    <p>Автосервис с гарантией.</p>
-                </div>
-            </div>
-        </section>
         <main>
-            <section class="model">
-                <img
-                    class="model-image"
-                    src="images/citroen_banner.jpg"
-                    width="250px"
-                    height="150px"
-                />
-                <img
-                    class="model-image"
-                    src="images/peugeot_banner .jpg"
-                    width="250px"
-                    height="150px"
-                />
-            </section>
-            <section class="news">
+            <section class="main">
                 <div class="wrap-banner">
-                    <div class="news-banner">
+                    <div class="main-text">
+                        <h1>
+                            КАЧЕСТВЕННЫЙ СЕРВИС АВТОМОБИЛЕЙ<br />
+                            PEUGEOT &nbsp;CITROEN
+                        </h1>
                         <p>
-                            <span class="procent">Cкидка за рекомендацию сервиса!</span
-                            ><br />
-                            Порекомендуйте SibirFRANService тем, кому это может быть
-                            полезно!<br />
-                            Ваши знакомые сэкономят время и деньги на поиске СТО, которому
-                            можно доверять,<br />а вы получите скидку
-                            <span class="procent">10%</span> на последующий ремонт или
-                            техобслуживание!
+                            Специализированное СТО "SibirFRANService".<br />
+                            Берем в работу и устраняем сложные поломки, от которых другие
+                            СТО отказались!
                         </p>
+                        <p>Автосервис с гарантией.</p>
                     </div>
+                </div>
+            </section>
+            <section class="model">
+                <img class="model-image" src="images/citroen_banner.jpg" />
+                <img class="model-image" src="images/peugeot_banner .jpg" />
+            </section>
+            <section class="advert">
+                <div class="discount-banner">
+                    <h3 class="procent">Cкидка за рекомендацию сервиса!</h3>
+                    <p>
+                        Порекомендуйте SibirFRANService тем, кому это может быть
+                        полезно!<br />
+                        Ваши знакомые сэкономят время и деньги на поиске СТО,<br />
+                        которому можно доверять,<br />а вы получите скидку
+                        <span class="procent">10%</span> на последующий ремонт или
+                        техобслуживание!
+                    </p>
                 </div>
             </section>
             <section class="service">
@@ -236,7 +225,7 @@
                 </div>
             </section>
             <section class="oil">
-                <div class="oil-wrap">
+                <div class="wrap-banner">
                     <h1 class="title_white">КАЧЕСТВЕННЫЕ РАСХОДНЫЕ <br />МАТЕРИАЛЫ</h1>
                     <div class="oil-items model">
                         <img src="images/shell.jpg" />
@@ -245,18 +234,46 @@
                     </div>
                 </div>
             </section>
-            <section class="news-shiny" id="shin">
-                <div class="news-wrapp">
-                    <div class="news-cont-shin">
-                        <div class="news-cont-shin-img"></div>
-                        <div class="news-cont-shin-text">
-                            <h3>Запишитесь на сервис:</h3>
-                            <form>Имя: Телефон: Марка авто: Вид работ: Дата: Время:</form>
-                        </div>
+            <section class="appointment">
+                <div class="appointment-wrap">
+                    <div class="appointment-img"></div>
+                    <div class="appointment-text">
+                        <form action="" class="form">
+                            <h3>Запишитесь на сервис вашего автомобиля:</h3>
+                            <input
+                                type="text"
+                                class="form__input"
+                                placeholder="Дата и время"
+                                value=""
+                                id="datetimepicker"
+                                name="datetimepicker"
+                            />
+                            <input
+                                type="text"
+                                class="form__input"
+                                placeholder="Ваше имя"
+                            />
+                            <input
+                                type="text"
+                                class="form__input"
+                                placeholder="Телефон"
+                            />
+                            <input
+                                type="text"
+                                class="form__input"
+                                placeholder="Марка авто"
+                            />
+                            <input
+                                type="text"
+                                class="form__input"
+                                placeholder="Вид работ"
+                            />
+                            <button type="submit" class="submit__btn">ЗАПИСАТЬСЯ</button>
+                        </form>
                     </div>
                 </div>
             </section>
-            <section class="map-section">
+            <section class="map">
                 <div id="map" style="width: 100%; height: 315px"></div>
                 <div class="adres-block revealator-slideup revealator-delay5">
                     <img src="images/logo.jpg" width="50px" height="50px" />
@@ -281,6 +298,7 @@
                         marker.setMap(map);
                     }
                 </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEJaWglm--N9SQ55NMtQAl0MJpwO7a-iQ&callback=myMap"></script>
             </section>
         </main>
         <footer>
@@ -318,7 +336,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-item socialmedia">
+                <div class="socialmedia">
                     <a href="https://api.whatsapp.com/send?phone=79134897500">
                         <img src="images/whatsapp.png" alt="whatsapp" />
                     </a>
@@ -331,6 +349,7 @@
                 </div>
             </div>
         </footer>
+        <script src="scripts/jquery_calendar.js"></script>
         <script src="scripts/javascripts.js"></script>
         <script src="scripts/jquery-1.11.3.min.js"></script>
         <script src="scripts/fm.revealator.jquery.js"></script>

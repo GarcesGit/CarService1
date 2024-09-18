@@ -15,7 +15,7 @@ function animaionItem(i) {
             itemWrap.style.padding = "80px 0 0 0";
             itemWrap.style.transition = "1s";
         }
-        setTimeout(removeText, 300);
+        setTimeout(removeText, 200);
     } else {
         item.classList.add("showNote");
         itemWrap.style.padding = "0px";
@@ -25,6 +25,10 @@ function animaionItem(i) {
             document.getElementById("service-note" + i).style.left = "0px";
             document.getElementById("service-note" + i).style.transition = "1s";
         }
-        setTimeout(text, 300);
+        setTimeout(text, 200);
     }
 }
+
+$(document).ready(function () {
+    $("#phone").mask("+7 (999) 999-99-99"); // Маска для телефона
+});
