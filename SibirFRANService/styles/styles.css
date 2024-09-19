@@ -14,34 +14,31 @@ body {
     background-color: #3b3b3b;
 }
 
-li {
-    list-style-type: none;
-}
-
-ul {
-    margin-left: 0;
-    padding-left: 0;
-}
-
 a {
     text-decoration: none;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+    width: 100%;
     height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
     color: #fff;
-    font-size: 0.8em;
-}
-header a:hover {
-    color: rgb(164, 164, 164);
 }
 h1 {
     margin: 10px;
-    padding: 5px 10px;
     letter-spacing: 1px;
+}
+.header-groups {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    background-color: rgba(107, 107, 107, 0.6);
+    border-radius: 10px;
 }
 .header-item-group-left,
 .header-item-group-right {
@@ -50,30 +47,52 @@ h1 {
 }
 .header-item-group-left {
     float: left;
+    justify-content: start;
 }
 .header-item-group-right {
     float: right;
+    justify-content: end;
+}
+.header-groups h1 {
+    font-size: 2em;
+}
+.header-groups h3 {
+    font-size: 1em;
+}
+.header-groups p,
+a,
+a:hover {
+    font-size: 0.8em;
+}
+.header-groups a:hover {
+    color: #d00b0b;
 }
 
 .main {
     width: 100%;
-    min-height: 90vh;
+    min-height: 100vh;
     background-image: url("../images/main_bunner.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
+
 .wrap-banner {
     width: 100%;
-    height: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0 30px 0;
-    background-color: rgba(108, 107, 107, 0.3);
+    padding: 0 0 30px 0;
+    background-color: rgba(107, 107, 107, 0.4);
 }
+
+.main .wrap-banner {
+    height: 100vh;
+    justify-content: flex-start;
+}
+
 .main-text {
     margin-top: 5%;
 }
@@ -108,6 +127,7 @@ h1 {
     width: 230px;
     height: 150px;
     margin-left: 50px;
+    border-radius: 10px;
 }
 
 .advert {
@@ -124,8 +144,9 @@ h1 {
     padding: 10px;
     text-align: center;
     background-color: #fff;
-    border: 2px solid red;
+    border: 2px solid #d00b0b;
     line-height: 1.5;
+    border-radius: 10px;
 }
 .procent {
     color: #d00b0b;
@@ -179,6 +200,7 @@ h1 {
     overflow: hidden;
     cursor: pointer;
     padding: 80px 0 0 0;
+    border-radius: 10px;
 }
 .service-item-name {
     background-color: rgba(0, 0, 0, 0.5);
@@ -192,7 +214,7 @@ h1 {
     border-top: 1px solid rgba(0, 0, 0, 0);
 }
 .service-item a {
-    color: red;
+    color: #d00b0b;
     padding: 5px;
 }
 .showNote {
@@ -203,7 +225,7 @@ h1 {
     padding: 15px 5px;
 }
 .showNote strong {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #d00b0b;
     transition: 1s;
 }
 .service-note {
@@ -216,7 +238,7 @@ h1 {
     line-height: 1;
 }
 .service-item-name:hover {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #d00b0b;
 }
 .service-item_background {
     background-size: cover;
@@ -260,8 +282,8 @@ h1 {
     background-color: #ebebe0;
     background-image: url(../images/main_bunner2.jpg);
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     display: flex;
     justify-content: center;
@@ -280,8 +302,8 @@ h1 {
 .oil-items img {
     width: 200px;
     height: 150px;
-    border-bottom: 2px solid red;
     margin: 10px 20px;
+    border-radius: 10px;
 }
 .oil-items figcaption {
     font-size: 14px;
@@ -302,6 +324,7 @@ h1 {
     flex-direction: row;
     align-items: flex-start;
     background-color: #ffffff;
+    border-radius: 10px;
 }
 .appointment-img {
     background-image: url(../images/appointment.jpg);
@@ -310,6 +333,7 @@ h1 {
     background-size: cover;
     width: 40%;
     height: 100%;
+    border-radius: 10px 0 0 10px;
 }
 .appointment-text {
     display: flex;
@@ -446,14 +470,19 @@ h3 {
     .contact-item-group-data .contact-item {
         margin: 15px;
     }
-    .header-item-group-left {
-        font-size: 0.9em;
-    }
     .header-item-group-right {
         font-size: 0.8em;
+    }
+    .header-item-group-right .contact-item {
         margin: 5px;
     }
+    .header-item-group-left .contact-item img {
+        margin: 0;
+    }
 
+    .main-text {
+        margin-top: 7%;
+    }
     .main-text h1 {
         font-size: 2em;
     }
@@ -464,17 +493,24 @@ h3 {
 }
 
 @media (max-width: 900px) {
-    header {
-        flex-wrap: wrap;
-        height: auto;
-        width: 100%;
-        z-index: 2;
-        position: relative;
-        justify-content: center;
-        padding: 2px;
+    .header-groups h1 {
+        font-size: 1.5em;
+    }
+    .header-groups h3 {
+        font-size: 0.8em;
+    }
+    .header-groups p,
+    a,
+    a:hover {
+        font-size: 0.7em;
     }
 
-    .contact-item {
+    .header-item-group-left .contact-item img {
+        width: 65px;
+        height: 45px;
+    }
+
+    .wrap-contact .contact-item {
         margin: 5px 15px 5px 15px;
     }
     .contact-item-group-data {
@@ -547,19 +583,24 @@ h3 {
     }
 }
 
-@media (max-width: 600px) {
-    .contact-item img {
-        width: 50px;
-        height: 35px;
+@media (max-width: 730px) {
+    .header-groups {
+        flex-wrap: wrap;
     }
+}
+
+@media (max-width: 600px) {
     h1 {
         padding: 5px 5px;
     }
-    .header-item-group-left {
-        font-size: 0.7em;
+    .header-groups h1 {
+        font-size: 1.2em;
     }
-    .header-item-group-right {
-        font-size: 0.65em;
+
+    .header-item-group-left .contact-item img,
+    .contact-item img {
+        width: 50px;
+        height: 35px;
     }
 
     .main-text h1 {
