@@ -1,3 +1,41 @@
+// Установка cookie
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+// Получение cookie
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const cookieArray = document.cookie.split(";");
+    for (let i = 0; i < cookieArray.length; i++) {
+        let aCookie = cookieArray[i];
+        while (aCookie.charAt(0) === " ") aCookie = aCookie.substring(1, aCookie.length);
+        if (aCookie.indexOf(nameEQ) === 0)
+            return aCookie.substring(nameEQ.length, aCookie.length);
+    }
+    return null;
+}
+
+// Проверка наличия согласия на использование cookie и отображение баннера
+// window.onload = function () {
+//     if (!getCookie("cookie_consent")) {
+//         document.getElementById("cookie-banner").style.display = "flex";
+//     }
+
+//     // Скрытие баннера при нажатии кнопки "ОК"
+//     document.getElementById("accept-cookies").onclick = function () {
+//         setCookie("cookie_consent", "accepted", 30); // Хранить 30 дней
+//         document.getElementById("cookie-banner").style.display = "none";
+//     };
+// };
+
+// Анимации баннеров Услуги
 function animaionItem(i) {
     let itemsArray = document.getElementsByClassName("service-item-name");
     let item = itemsArray[i - 1];
@@ -27,4 +65,69 @@ function animaionItem(i) {
         }
         setTimeout(text, 200);
     }
+}
+
+// Активируем или деактивируем кнопку формы записи на сервис
+function toggleSubmitButton() {
+    const checkbox = document.getElementById("privacyCheckbox");
+    const submitButton = document.getElementById("submitButton");
+    submitButton.disabled = !checkbox.checked;
+}
+
+// Очищаем текущее поле инпута при нажатии Escape
+function сlearInputByEsc() {
+    const inputs = document.querySelectorAll(".form__input");
+
+    inputs.forEach((input) => {
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                this.value = "";
+            }
+        });
+    });
+}
+сlearInputByEsc();
+
+//Появляется баннер подтверждения заявки
+// function showConfirmationBanner() {
+//     const form = document.querySelector(".form");
+//     const confirmationBanner = document.getElementById("confirmation-banner");
+
+//     form.addEventListener("submit", function (event) {
+//         event.preventDefault();
+//         confirmationBanner.style.display = "flex";
+//     });
+// }
+// showConfirmationBanner();
+
+// Отправляем данные формы на Whatsapp
+function sendToWhatsapp() {
+    const datetimepicker = document.getElementById("datetimepicker").value;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const car = document.getElementById("car").value;
+    const service = document.getElementById("service").value;
+
+    const url =
+        "https://wa.me/79529124138?text=" +
+        "ЗАПИСЬ НА СЕРВИС" +
+        "%0a" +
+        "Дата и время: " +
+        datetimepicker +
+        "%0a" +
+        "Имя: " +
+        name +
+        "%0a" +
+        "Телефон: " +
+        phone +
+        "%0a" +
+        "Марка авто: " +
+        car +
+        "%0a" +
+        "Вид работ: " +
+        service +
+        "%0a" +
+        "ПОЖАЛУЙСТА, ПОДТВЕРДИТЕ ЗАПИСЬ!";
+
+    window.open(url, "_blank").focus();
 }

@@ -5,19 +5,21 @@
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     background-color: #3b3b3b;
 }
-
 a {
     text-decoration: none;
+    font-size: 1em;
+    color: #fff;
 }
-
+a:hover {
+    color: #c2c2c2;
+    cursor: pointer;
+}
 .header {
     width: 100%;
     height: auto;
@@ -43,34 +45,58 @@ h1 {
 .header-item-group-left,
 .header-item-group-right {
     display: flex;
-    align-items: center;
 }
 .header-item-group-left {
     float: left;
     justify-content: start;
+    align-items: center;
 }
 .header-item-group-right {
     float: right;
     justify-content: end;
+    align-items: start;
 }
 .header-groups h1 {
     font-size: 2em;
+    font-weight: 700;
 }
 .header-groups h3 {
     font-size: 1em;
 }
-.header-groups p,
-a,
-a:hover {
-    font-size: 0.8em;
+
+#cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    display: none;
 }
-.header-groups a:hover {
-    color: #d00b0b;
+#cookie-banner button {
+    margin: 5px;
+    background-color: #c2c2c2;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#cookie-banner button:hover {
+    background-color: #a2a2a2;
+}
+#cookie-banner a {
+    color: #0075ff;
+    text-decoration: underline;
 }
 
 .main {
     width: 100%;
-    min-height: 100vh;
     background-image: url("../images/main_bunner.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -87,12 +113,10 @@ a:hover {
     padding: 0 0 30px 0;
     background-color: rgba(107, 107, 107, 0.4);
 }
-
 .main .wrap-banner {
-    height: 100vh;
+    height: 100%;
     justify-content: flex-start;
 }
-
 .main-text {
     margin-top: 5%;
 }
@@ -318,10 +342,12 @@ a:hover {
     padding: 50px 0 50px 0;
 }
 .appointment-wrap {
+    position: relative;
     width: 70%;
     max-width: 1500px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: flex-start;
     background-color: #ffffff;
     border-radius: 10px;
@@ -342,7 +368,7 @@ a:hover {
     padding: 20px;
 }
 .appointment-text h3 {
-    margin-bottom: 20px;
+    margin: 20px;
 }
 .form {
     width: 85%;
@@ -357,7 +383,7 @@ a:hover {
     display: block;
     background: #fff;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000;
     margin-bottom: 10px;
     padding: 5px;
     color: #000;
@@ -368,15 +394,69 @@ a:hover {
     font-size: 16px;
 }
 .submit__btn {
-    margin-top: 20px;
+    margin: 20px;
     padding: 10px 20px;
-    background: #d71730;
+    background-color: #d71730;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
+.submit__btn:disabled {
+    background-color: #cb8790;
+    color: #616161;
+    cursor: not-allowed;
+}
+.form__label {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    cursor: pointer;
+}
+.form__checkbox {
+    margin: 10px;
+}
+.form__text {
+    font-size: 8px;
+    margin: 10px;
+}
+.form__text a {
+    font-size: 8px;
+    color: #0075ff;
+    text-decoration: underline;
+}
+/* #confirmation-banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    padding: 20px;
+    background-color: #3b3b3b;
+    color: #fff;
+    border-radius: 0 10px 10px 0;
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    z-index: 2;
+    display: none;
+}
+.confirmation-banner-text {
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(107, 107, 107, 0.6);
+    border-radius: 10px;
+    line-height: 1.5;
+} */
 
 .map {
     width: 100%;
@@ -407,9 +487,6 @@ footer {
     height: auto;
     padding: 20px 0;
 }
-footer a:hover {
-    color: rgb(164, 164, 164);
-}
 .wrap-contact {
     display: flex;
     flex-direction: row;
@@ -436,26 +513,76 @@ h3 {
 .contact-item {
     display: flex;
     flex-direction: column;
+    justify-content: start;
     flex-wrap: wrap;
     margin: 15px;
-}
-.contact-item a {
-    color: #fff;
 }
 .contact-item img {
     width: 90px;
     height: 60px;
     margin: 5px;
+    border-radius: 10px;
 }
 .socialmedia {
     margin: 50px 20px 20px 20px;
 }
-.socialmedia img {
+.socialmedia * {
     display: block;
-    width: 20px;
-    height: 20px;
-    margin-bottom: 10px;
+    width: 40px;
+    height: 40px;
+    margin: 20px;
 }
+.socialmedia a::before {
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+.socialmedia a:hover::before {
+    opacity: 0;
+}
+.socialmedia a::after {
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.socialmedia a:hover::after {
+    opacity: 1;
+}
+.vk,
+.whatsapp {
+    position: relative;
+    overflow: hidden;
+}
+.vk::before {
+    background-image: url(../images/vk.jpg);
+}
+.vk::after {
+    background-image: url(../images/vk_hover.jpg);
+}
+.whatsapp::before {
+    background-image: url(../images/whatsapp.jpg);
+}
+.whatsapp::after {
+    background-image: url(../images/whatsapp_hover.jpg);
+}
+
+/* Адаптивный дизайн xxx*/
 
 @media (max-width: 1200px) {
     .advert .wrap-banner {
@@ -485,6 +612,7 @@ h3 {
     }
     .main-text h1 {
         font-size: 2em;
+        font-weight: 700;
     }
     .main-text p {
         font-size: 1.2em;
@@ -495,15 +623,16 @@ h3 {
 @media (max-width: 900px) {
     .header-groups h1 {
         font-size: 1.5em;
+        font-weight: 700;
     }
     .header-groups h3 {
         font-size: 0.8em;
     }
-    .header-groups p,
+    /* .header-groups p,
     a,
     a:hover {
         font-size: 0.7em;
-    }
+    } */
 
     .header-item-group-left .contact-item img {
         width: 65px;
@@ -527,7 +656,7 @@ h3 {
     }
 
     .main {
-        min-height: 80vh;
+        min-height: 80%;
     }
 
     .discount-banner {
@@ -595,6 +724,7 @@ h3 {
     }
     .header-groups h1 {
         font-size: 1.2em;
+        font-weight: 700;
     }
 
     .header-item-group-left .contact-item img,
@@ -605,6 +735,7 @@ h3 {
 
     .main-text h1 {
         font-size: 1.4em;
+        font-weight: 700;
     }
     .main-text p {
         font-size: 1em;
@@ -664,8 +795,8 @@ h3 {
         max-width: 80px;
     }
     .socialmedia img {
-        width: 13px;
-        height: 13px;
+        width: 20px;
+        height: 20px;
     }
     .socialmedia {
         margin: 40px 10px 20px 5px;

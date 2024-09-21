@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ru" dir="ltr">
     <head>
         <title>СТО SibirFRANService | Ремонт автомобилей Peugeot Citroen</title>
         <meta charset="utf-8" />
@@ -42,37 +42,53 @@
                             </div>
                             <div class="header-item-group-right">
                                 <div class="contact-item">
-                                    <h3>Адрес:</h3>
+                                    <h3>АДРЕС</h3>
                                     <p>
                                         Солнечная аллея, 10 к.1,<br />СТ Калинка, с.
                                         Каменка,<br />Новосибирская область
                                     </p>
                                 </div>
                                 <div class="contact-item">
-                                    <h3>Телефоны:</h3>
+                                    <h3>ТЕЛЕФОНЫ</h3>
                                     <a href="tel:+73833812244"
                                         ><i class="fas fa-phone"></i>+7 383 381 2244</a
                                     >
                                     <a href="tel:+79513654598"
                                         ><i class="fas fa-phone"></i>+7 951 365 4598</a
                                     >
+                                    <p></p>
                                 </div>
                                 <div class="contact-item">
-                                    <h3>Время работы:</h3>
+                                    <h3>ВРЕМЯ РАБОТЫ</h3>
                                     <p>Пн-Сб 10:00–20:00</p>
                                     <p>Вс выходной</p>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div id="cookie-banner">
+                        <div>
+                            <p>
+                                Наш сайт использует cookie в соответствии с
+                                <a href="privacy.txt" target="_blank"
+                                    >Политикой конфиденциальности.</a
+                                >
+                            </p>
+                            <p>
+                                Продолжая пользоваться сайтом, вы соглашаетесь с
+                                использованием файлов cookie.
+                            </p>
+                        </div>
+                        <div><button id="accept-cookies">ОК</button></div>
+                    </div>
                     <div class="main-text">
                         <h1>
                             КАЧЕСТВЕННЫЙ СЕРВИС АВТОМОБИЛЕЙ<br />
                             PEUGEOT &nbsp;CITROEN
                         </h1>
                         <p>
-                            Специализированное СТО "SibirFRANService".<br />
+                            Специализированное СТО SibirFRANService.<br />
                             Берем в работу и устраняем сложные поломки, от которых другие
                             СТО отказались!
                         </p>
@@ -250,40 +266,89 @@
                 <div class="appointment-wrap">
                     <div class="appointment-img"></div>
                     <div class="appointment-text">
-                        <form action="" class="form">
+                        <form action="" class="form" autocomplete="off">
                             <h3>Запишитесь на сервис вашего автомобиля:</h3>
                             <input
                                 type="text"
-                                class="form__input"
-                                placeholder="Дата и время"
-                                value=""
-                                id="datetimepicker"
                                 name="datetimepicker"
+                                class="form__input"
+                                id="datetimepicker"
+                                placeholder="Дата и время *"
+                                value=""
+                                required
                             />
                             <input
                                 type="text"
+                                name="input_2"
                                 class="form__input"
-                                placeholder="Ваше имя"
+                                id="name"
+                                placeholder="Ваше имя *"
+                                value=""
+                                required
+                            />
+                            <input
+                                type="number"
+                                name="input_3"
+                                class="form__input"
+                                id="phone"
+                                placeholder="Номер телефона *"
+                                value=""
+                                required
                             />
                             <input
                                 type="text"
+                                name="input_4"
                                 class="form__input"
-                                placeholder="Телефон"
+                                id="car"
+                                placeholder="Марка авто *"
+                                value=""
+                                required
                             />
                             <input
                                 type="text"
+                                name="input_5"
+                                id="service"
                                 class="form__input"
-                                placeholder="Марка авто"
+                                placeholder="Вид работ *"
+                                value=""
+                                required
                             />
-                            <input
-                                type="text"
-                                class="form__input"
-                                placeholder="Вид работ"
-                            />
-                            <button type="submit" class="submit__btn">ЗАПИСАТЬСЯ</button>
+                            <label class="form__label">
+                                <input
+                                    type="checkbox"
+                                    name="input_6"
+                                    class="form__checkbox"
+                                    id="privacyCheckbox"
+                                    onchange="toggleSubmitButton()"
+                                />
+                                <div class="form__text">
+                                    Подтверждаю согласие на обработку персональных данных
+                                    и согласие с условиями
+                                    <a href="privacy.txt" target="_blank"
+                                        >Политики конфиденциальности</a
+                                    >
+                                </div>
+                            </label>
+                            <button
+                                type="submit"
+                                class="submit__btn"
+                                id="submitButton"
+                                disabled
+                                onclick="sendToWhatsapp()"
+                            >
+                                ЗАПИСАТЬСЯ
+                            </button>
                         </form>
                     </div>
+                    <!-- <div id="confirmation-banner">
+                        <div class="confirmation-banner-text">
+                            <p>Ваша заявка отправлена.</p>
+                            <p>Мы свяжемся с вами</p>
+                            <p>для подтверждения времени записи на сервис.</p>
+                        </div>
+                    </div> -->
                 </div>
+                <div></div>
             </section>
             <section class="map">
                 <div id="map" style="width: 100%; height: 315px"></div>
@@ -310,7 +375,7 @@
                         marker.setMap(map);
                     }
                 </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEJaWglm--N9SQ55NMtQAl0MJpwO7a-iQ&callback=myMap"></script>
+                <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEJaWglm--N9SQ55NMtQAl0MJpwO7a-iQ&callback=myMap"></script> -->
             </section>
         </main>
         <footer>
@@ -328,36 +393,46 @@
                     </div>
                     <div class="contact-item-group-data">
                         <div class="contact-item">
-                            <h3>Адрес:</h3>
+                            <h3>АДРЕС</h3>
                             <p>Солнечная аллея, 10 к.1, СТ Калинка,</p>
                             <p>с. Каменка, Новосибирская область</p>
+                            <h3>НАИМЕНОВАНИЕ КОМПАНИИ или ИП</h3>
+                            <p>ОГРН или ИНН ИП</p>
                         </div>
                         <div class="contact-item">
-                            <h3>Телефоны:</h3>
+                            <h3>ТЕЛЕФОНЫ</h3>
                             <a href="tel:+73833812244"
                                 ><i class="fas fa-phone"></i>+7 383 381 2244</a
                             >
                             <a href="tel:+79513654598"
                                 ><i class="fas fa-phone"></i>+7 951 365 4598</a
                             >
+                            <h3>НАПИСАТЬ НАМ</h3>
+                            <p>АКТУАЛЬНАЯ ПОЧТА</p>
                         </div>
                         <div class="contact-item">
-                            <h3>Время работы:</h3>
+                            <h3>ВРЕМЯ РАБОТЫ</h3>
                             <p>Пн-Сб 10:00–20:00</p>
                             <p>Вс выходной</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>КЛИЕНТАМ</h3>
+                            <a href="">Услуги автосервиса</a>
+                            <a href="">Скидки</a>
+                            <a href="">Запись на сервис</a>
+                            <a href="privacy.txt" target="_blank"
+                                >Политика конфиденциальности</a
+                            >
                         </div>
                     </div>
                 </div>
                 <div class="socialmedia">
-                    <a href="https://api.whatsapp.com/send?phone=79513654598">
-                        <img src="images/whatsapp.png" alt="whatsapp" />
+                    <a
+                        href="https://api.whatsapp.com/send?phone=79513654598"
+                        class="whatsapp"
+                    >
                     </a>
-                    <a href="https://www.instagram.com/sibir_fran_service/">
-                        <img src="images/instagram.png" alt="instagram" />
-                    </a>
-                    <a href="https://vk.com/sibirfranservice">
-                        <img src="images/vk.png" alt="vk" />
-                    </a>
+                    <a href="https://vk.com/sibirfranservice" class="vk"> </a>
                 </div>
             </div>
         </footer>
