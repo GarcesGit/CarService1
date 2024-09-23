@@ -23,17 +23,17 @@ function getCookie(name) {
 }
 
 // Проверка наличия согласия на использование cookie и отображение баннера
-// window.onload = function () {
-//     if (!getCookie("cookie_consent")) {
-//         document.getElementById("cookie-banner").style.display = "flex";
-//     }
+window.onload = function () {
+    if (!getCookie("cookie_consent")) {
+        document.getElementById("cookie-banner").style.display = "flex";
+    }
 
-//     // Скрытие баннера при нажатии кнопки "ОК"
-//     document.getElementById("accept-cookies").onclick = function () {
-//         setCookie("cookie_consent", "accepted", 30); // Хранить 30 дней
-//         document.getElementById("cookie-banner").style.display = "none";
-//     };
-// };
+    // Скрытие баннера согласия с cookie при нажатии кнопки "ОК"
+    document.getElementById("accept-cookies").onclick = function () {
+        setCookie("cookie_consent", "accepted", 30); // Хранить 30 дней
+        document.getElementById("cookie-banner").style.display = "none";
+    };
+};
 
 // Анимации баннеров Услуги
 function animaionItem(i) {
@@ -67,13 +67,6 @@ function animaionItem(i) {
     }
 }
 
-// Активируем или деактивируем кнопку формы записи на сервис
-function toggleSubmitButton() {
-    const checkbox = document.getElementById("privacyCheckbox");
-    const submitButton = document.getElementById("submitButton");
-    submitButton.disabled = !checkbox.checked;
-}
-
 // Очищаем текущее поле инпута при нажатии Escape
 function сlearInputByEsc() {
     const inputs = document.querySelectorAll(".form__input");
@@ -88,17 +81,122 @@ function сlearInputByEsc() {
 }
 сlearInputByEsc();
 
-//Появляется баннер подтверждения заявки
-// function showConfirmationBanner() {
-//     const form = document.querySelector(".form");
-//     const confirmationBanner = document.getElementById("confirmation-banner");
+// Маска ввода номера телефона в форму
+document.addEventListener("DOMContentLoaded", function () {
+    function initializePhoneMask() {
+        let input = document.getElementById("phone");
 
-//     form.addEventListener("submit", function (event) {
-//         event.preventDefault();
-//         confirmationBanner.style.display = "flex";
-//     });
-// }
-// showConfirmationBanner();
+        input.addEventListener("input", phoneMask);
+        input.addEventListener("focus", phoneMask);
+        input.addEventListener("blur", phoneMask);
+
+        function phoneMask(event) {
+            let blank = "+_ (___) ___-__-__";
+            let i = 0;
+            let val = this.value.replace(/\D/g, "").replace(/^8/, "7");
+
+            this.value = blank.replace(/./g, function (char) {
+                if (/[_\d]/.test(char) && i < val.length) return val.charAt(i++);
+                return i >= val.length ? "" : char;
+            });
+
+            if (event.type == "blur") {
+                if (this.value.length == 2) this.value = "";
+            } else {
+                setCursorPosition(this, this.value.length);
+            }
+        }
+
+        function setCursorPosition(elem, pos) {
+            elem.focus();
+            if (elem.setSelectionRange) {
+                elem.setSelectionRange(pos, pos);
+                return;
+            }
+            if (elem.createTextRange) {
+                let range = elem.createTextRange();
+                range.collapse(true);
+                range.moveEnd("character", pos);
+                range.moveStart("character", pos);
+                range.select();
+                return;
+            }
+        }
+    }
+
+    initializePhoneMask();
+});
+
+// Активируем или деактивируем кнопку формы записи на сервис
+function toggleSubmitButton() {
+    const checkbox = document.getElementById("privacyCheckbox");
+    const submitButton = document.getElementById("submitButton");
+    submitButton.disabled = !checkbox.checked;
+}
+
+// Валидация формы НАЧАЛО
+// Проверка формы на запрещённые символы
+function validateInput(inputField) {
+    const forbiddenChars = /[&<>\"']/;
+    return forbiddenChars.test(inputField.value)
+        ? "Ошибка: недопустимые символы (&, <, >, \", ')."
+        : "";
+}
+
+// Скрываем сообщение об ошибке в форме
+function hideErrorMessage(errorSpan) {
+    setTimeout(() => {
+        if (errorSpan) {
+            errorSpan.textContent = "";
+        }
+    }, 3000);
+}
+
+// Отображаем сообщение об ошибке в форме и проверяем отправку
+function handleFormSubmit(event) {
+    const inputFields = document.querySelectorAll(".form__input");
+    const errorSpan = document.querySelector("#error-text");
+    errorSpan.textContent = "";
+
+    let hasErrors = false;
+    let firstErrorField = null;
+
+    inputFields.forEach((field) => {
+        const errorMessage = validateInput(field);
+        if (errorMessage) {
+            errorSpan.textContent = errorMessage;
+            hasErrors = true;
+            if (!firstErrorField) {
+                firstErrorField = field;
+            }
+        }
+    });
+
+    if (hasErrors) {
+        event.preventDefault();
+        hideErrorMessage(errorSpan);
+        if (firstErrorField) {
+            firstErrorField.focus();
+        }
+        return;
+    }
+
+    // Проверяем, может ли пользователь отправить форму повторно через 10 часов
+    if (getCookie("formSubmitted") === "true") {
+        event.preventDefault();
+        return;
+    }
+
+    sendToWhatsapp();
+    showConfirmationBanner();
+
+    // Устанавливаем куки на 10 часов ////////////////////////////////////////
+    // setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
+    setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
+}
+
+document.querySelector("#myForm").addEventListener("submit", handleFormSubmit);
+// Валидация формы КОНЕЦ
 
 // Отправляем данные формы на Whatsapp
 function sendToWhatsapp() {
@@ -131,3 +229,32 @@ function sendToWhatsapp() {
 
     window.open(url, "_blank").focus();
 }
+
+// Появляется баннер подтверждения заявки
+function showConfirmationBanner() {
+    const confirmationBanner = document.getElementById("confirmation-banner");
+    confirmationBanner.style.display = "flex";
+
+    // Таймер убирает баннер через 10 часов ////////////////////////////////////////
+    setTimeout(() => {
+        confirmationBanner.style.display = "none";
+        // }, 10 * 60 * 60 * 1000); // 10 часов
+    }, 60 * 1000); // 1 минута
+}
+
+// // Возвращаемся к тому же месту страницы после отправки данных формы
+// function setupScrollPosition() {
+//     document.getElementById("myForm").onsubmit = function () {
+//         const scrollPosition = window.scrollY;
+//         localStorage.setItem("scrollPosition", scrollPosition);
+//     };
+
+//     window.onload = function () {
+//         const scrollPosition = localStorage.getItem("scrollPosition");
+//         if (scrollPosition) {
+//             window.scrollTo(0, parseInt(scrollPosition, 10));
+//             localStorage.removeItem("scrollPosition");
+//         }
+//     };
+// }
+// setupScrollPosition();

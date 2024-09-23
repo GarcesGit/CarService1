@@ -266,8 +266,9 @@
                 <div class="appointment-wrap">
                     <div class="appointment-img"></div>
                     <div class="appointment-text">
-                        <form action="" class="form" autocomplete="off">
+                        <form class="form" id="myForm" autocomplete="off">
                             <h3>Запишитесь на сервис вашего автомобиля:</h3>
+                            <span id="error-text" class="error"></span>
                             <input
                                 type="text"
                                 name="datetimepicker"
@@ -275,7 +276,6 @@
                                 id="datetimepicker"
                                 placeholder="Дата и время *"
                                 value=""
-                                required
                             />
                             <input
                                 type="text"
@@ -284,16 +284,15 @@
                                 id="name"
                                 placeholder="Ваше имя *"
                                 value=""
+                                maxlength="20"
                                 required
                             />
                             <input
-                                type="number"
+                                type="tel"
                                 name="input_3"
-                                class="form__input"
+                                class="form__input maskphone"
                                 id="phone"
-                                placeholder="Номер телефона *"
-                                value=""
-                                required
+                                placeholder="+7 (999) 999-99-99 *"
                             />
                             <input
                                 type="text"
@@ -302,8 +301,10 @@
                                 id="car"
                                 placeholder="Марка авто *"
                                 value=""
+                                maxlength="20"
                                 required
                             />
+                            <!-- <select></select> -->
                             <input
                                 type="text"
                                 name="input_5"
@@ -334,19 +335,18 @@
                                 class="submit__btn"
                                 id="submitButton"
                                 disabled
-                                onclick="sendToWhatsapp()"
                             >
                                 ЗАПИСАТЬСЯ
                             </button>
                         </form>
                     </div>
-                    <!-- <div id="confirmation-banner">
+                    <div id="confirmation-banner">
                         <div class="confirmation-banner-text">
                             <p>Ваша заявка отправлена.</p>
                             <p>Мы свяжемся с вами</p>
                             <p>для подтверждения времени записи на сервис.</p>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div></div>
             </section>

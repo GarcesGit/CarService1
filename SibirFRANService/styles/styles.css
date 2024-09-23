@@ -353,7 +353,7 @@ h1 {
     border-radius: 10px;
 }
 .appointment-img {
-    background-image: url(../images/appointment.jpg);
+    background-image: url(../images/news-background.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -428,7 +428,11 @@ h1 {
     color: #0075ff;
     text-decoration: underline;
 }
-/* #confirmation-banner {
+.error {
+    color: red;
+    font-size: 12px;
+}
+#confirmation-banner {
     position: absolute;
     top: 0;
     right: 0;
@@ -456,7 +460,7 @@ h1 {
     background-color: rgba(107, 107, 107, 0.6);
     border-radius: 10px;
     line-height: 1.5;
-} */
+}
 
 .map {
     width: 100%;
