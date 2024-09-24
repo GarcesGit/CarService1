@@ -18,6 +18,17 @@
         <script type="text/javascript" src="scripts/jquery.js"></script>
         <script src="scripts/jquery.datetimepicker.full.js"></script>
         <link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css" />
+        <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        ></script>
+        <script type="text/javascript">
+            (function () {
+                emailjs.init({
+                    publicKey: "W1oe1JhvYGSEP6Ese",
+                });
+            })();
+        </script>
     </head>
     <body>
         <main>
@@ -120,7 +131,7 @@
                         <div
                             class="service-item service-item_background dvigatel revealator-zoomin"
                         >
-                            <div class="service-item-name" onclick="animaionItem(1)">
+                            <div class="service-item-name" onclick="animationItem(1)">
                                 <strong>Ремонт двигателя</strong>
                                 <div class="service-note" id="service-note1">
                                     <p>
@@ -133,7 +144,7 @@
                         <div
                             class="service-item service-item_background kpp revealator-zoomin revealator-delay1"
                         >
-                            <div class="service-item-name" onclick="animaionItem(2)">
+                            <div class="service-item-name" onclick="animationItem(2)">
                                 <strong>Ремонт КПП</strong>
                                 <div class="service-note" id="service-note2">
                                     <p>
@@ -146,7 +157,7 @@
                         <div
                             class="service-item service-item_background zapchasti revealator-zoomin revealator-delay2"
                         >
-                            <div class="service-item-name" onclick="animaionItem(3)">
+                            <div class="service-item-name" onclick="animationItem(3)">
                                 <strong>Запчасти</strong>
                                 <div class="service-note" id="service-note3">
                                     <p>
@@ -161,7 +172,7 @@
                         <div
                             class="service-item service-item_background tormoza revealator-zoomin revealator-delay3"
                         >
-                            <div class="service-item-name" onclick="animaionItem(4)">
+                            <div class="service-item-name" onclick="animationItem(4)">
                                 <strong>Тормозная система</strong>
                                 <div class="service-note" id="service-note4">
                                     <p>
@@ -174,7 +185,7 @@
                         <div
                             class="service-item service-item_background elek revealator-zoomin revealator-delay4"
                         >
-                            <div class="service-item-name" onclick="animaionItem(5)">
+                            <div class="service-item-name" onclick="animationItem(5)">
                                 <strong>Автоэлектрика и диагностика</strong>
                                 <div class="service-note" id="service-note5">
                                     <p>
@@ -189,7 +200,7 @@
                         <div
                             class="service-item service-item_background podveska revealator-zoomin revealator-delay1"
                         >
-                            <div class="service-item-name" onclick="animaionItem(6)">
+                            <div class="service-item-name" onclick="animationItem(6)">
                                 <strong>Ремонт подвески</strong>
                                 <div class="service-note" id="service-note6">
                                     <p>
@@ -201,7 +212,7 @@
                         <div
                             class="service-item service-item_background razvod revealator-zoomin revealator-delay2"
                         >
-                            <div class="service-item-name" onclick="animaionItem(7)">
+                            <div class="service-item-name" onclick="animationItem(7)">
                                 <strong>Развал-схождение</strong>
                                 <div class="service-note" id="service-note7">
                                     <p>
@@ -216,7 +227,7 @@
                         <div
                             class="service-item service-item_background rashod revealator-zoomin revealator-delay3"
                         >
-                            <div class="service-item-name" onclick="animaionItem(8)">
+                            <div class="service-item-name" onclick="animationItem(8)">
                                 <strong>Замена расходников</strong>
                                 <div class="service-note" id="service-note8">
                                     <p>Замена масла, фильтров</p>
@@ -226,7 +237,7 @@
                         <div
                             class="service-item service-item_background rul revealator-zoomin revealator-delay4"
                         >
-                            <div class="service-item-name" onclick="animaionItem(9)">
+                            <div class="service-item-name" onclick="animationItem(9)">
                                 <strong>Рулевое управление</strong>
                                 <div class="service-note" id="service-note9">
                                     <p>
@@ -241,7 +252,7 @@
                         >
                             <div
                                 class="service-item-name word-wrap"
-                                onclick="animaionItem(10)"
+                                onclick="animationItem(10)"
                             >
                                 <strong>Система кондиционирования</strong>
                                 <div class="service-note" id="service-note10">
@@ -285,7 +296,6 @@
                                 placeholder="Ваше имя *"
                                 value=""
                                 maxlength="20"
-                                required
                             />
                             <input
                                 type="tel"
@@ -302,18 +312,61 @@
                                 placeholder="Марка авто *"
                                 value=""
                                 maxlength="20"
-                                required
                             />
-                            <!-- <select></select> -->
-                            <input
-                                type="text"
-                                name="input_5"
-                                id="service"
-                                class="form__input"
-                                placeholder="Вид работ *"
-                                value=""
-                                required
-                            />
+                            <div class="custom-select">
+                                <select
+                                    style="display: none"
+                                    name="input_5"
+                                    id="service"
+                                    class="form__input"
+                                    required
+                                >
+                                    <option
+                                        class="form-option_disabled"
+                                        value=""
+                                        disabled
+                                        selected
+                                    >
+                                        Вид работ *
+                                        <span>&#9660;</span>
+                                    </option>
+                                    <option value="Комплексная диагностика">
+                                        Комплексная диагностика
+                                    </option>
+                                    <option value="Диагностика ходовой части">
+                                        Диагностика ходовой части
+                                    </option>
+                                    <option value="Компьютерная диагностика двигателя">
+                                        Компьютерная диагностика двигателя
+                                    </option>
+                                    <option value="Ремонт ходовой части">
+                                        Ремонт ходовой части
+                                    </option>
+                                    <option value="Ремонт двигателя">
+                                        Ремонт двигателя
+                                    </option>
+                                    <option value="Ремонт КПП">Ремонт КПП</option>
+                                    <option value="Ремонт рулевого управления">
+                                        Ремонт рулевого управления
+                                    </option>
+                                    <option value="Ремонт подвески">
+                                        Ремонт подвески
+                                    </option>
+                                    <option value="Ремонт автоэлектрики">
+                                        Ремонт автоэлектрики
+                                    </option>
+                                    <option value="Замена масла и фильтров">
+                                        Замена масла и фильтров
+                                    </option>
+                                    <option value="Замена жидкостей">
+                                        Замена жидкостей
+                                    </option>
+                                    <option value="Замена расходников">
+                                        Замена расходников
+                                    </option>
+                                </select>
+                            </div>
+
                             <label class="form__label">
                                 <input
                                     type="checkbox"
@@ -408,7 +461,7 @@
                                 ><i class="fas fa-phone"></i>+7 951 365 4598</a
                             >
                             <h3>НАПИСАТЬ НАМ</h3>
-                            <p>АКТУАЛЬНАЯ ПОЧТА</p>
+                            <p>carservicensk2024@gmail.com</p>
                         </div>
                         <div class="contact-item">
                             <h3>ВРЕМЯ РАБОТЫ</h3>
@@ -436,7 +489,7 @@
                 </div>
             </div>
         </footer>
-        <script src="scripts/jquery_calendar.js"></script>
+        <!-- <script src="scripts/jquery_calendar.js"></script> -->
         <script src="scripts/javascripts.js"></script>
         <script src="scripts/jquery-1.11.3.min.js"></script>
         <script src="scripts/fm.revealator.jquery.js"></script>

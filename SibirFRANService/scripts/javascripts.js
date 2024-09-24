@@ -22,25 +22,46 @@ function getCookie(name) {
     return null;
 }
 
-// Проверка наличия согласия на использование cookie и отображение баннера
-window.onload = function () {
-    if (!getCookie("cookie_consent")) {
-        document.getElementById("cookie-banner").style.display = "flex";
-    }
-
-    // Скрытие баннера согласия с cookie при нажатии кнопки "ОК"
-    document.getElementById("accept-cookies").onclick = function () {
-        setCookie("cookie_consent", "accepted", 30); // Хранить 30 дней
-        document.getElementById("cookie-banner").style.display = "none";
+// При загрузке страницы
+function setupScrollPosition() {
+    document.getElementById("myForm").onsubmit = function () {
+        const scrollPosition = window.scrollY;
+        localStorage.setItem("scrollPosition", scrollPosition);
     };
+
+    window.onload = function () {
+        // Проверка наличия согласия на использование cookie и отображение баннера
+        // if (!getCookie("cookie_consent")) {
+        //     document.getElementById("cookie-banner").style.display = "flex";
+        // }
+
+        // Возвращаемся к тому же месту страницы после отправки данных формы
+        const scrollPosition = localStorage.getItem("scrollPosition");
+        if (scrollPosition) {
+            window.scrollTo(0, parseInt(scrollPosition, 10));
+            localStorage.removeItem("scrollPosition");
+        }
+
+        // Проверка состояния баннера отправки формы
+        if (getCookie("formSubmitted") === "true") {
+            showConfirmationBanner();
+        }
+    };
+}
+setupScrollPosition();
+
+// Скрытие баннера согласия с cookie при нажатии кнопки "ОК"
+document.getElementById("accept-cookies").onclick = function () {
+    setCookie("cookie_consent", "accepted", 30); // Хранить 30 дней
+    document.getElementById("cookie-banner").style.display = "none";
 };
 
 // Анимации баннеров Услуги
-function animaionItem(i) {
-    let itemsArray = document.getElementsByClassName("service-item-name");
-    let item = itemsArray[i - 1];
-    let itemWrapArr = document.getElementsByClassName("service-item");
-    let itemWrap = itemWrapArr[i - 1];
+function animationItem(i) {
+    const itemsArray = document.getElementsByClassName("service-item-name");
+    const item = itemsArray[i - 1];
+    const itemWrapArr = document.getElementsByClassName("service-item");
+    const itemWrap = itemWrapArr[i - 1];
 
     if (item.classList.contains("showNote")) {
         function removeText() {
@@ -127,6 +148,46 @@ document.addEventListener("DOMContentLoaded", function () {
     initializePhoneMask();
 });
 
+// Кастомизация select
+document.addEventListener("DOMContentLoaded", function () {
+    initializeCustomSelect("service");
+});
+function initializeCustomSelect(selectId) {
+    let select = document.getElementById(selectId);
+    let selectedDiv = document.createElement("div");
+    selectedDiv.className = "select-selected";
+    selectedDiv.innerHTML = select.options[select.selectedIndex].innerHTML;
+    select.parentNode.insertBefore(selectedDiv, select);
+
+    let itemsDiv = document.createElement("div");
+    itemsDiv.className = "select-items";
+    for (let i = 0; i < select.options.length; i++) {
+        let optionDiv = document.createElement("div");
+        optionDiv.innerHTML = select.options[i].innerHTML;
+        optionDiv.addEventListener("click", function () {
+            selectedDiv.innerHTML = this.innerHTML;
+            select.selectedIndex = i;
+            itemsDiv.querySelectorAll("div").forEach((div) => {
+                div.classList.remove("same-as-selected");
+            });
+            this.classList.add("same-as-selected");
+            itemsDiv.style.display = "none"; // Закрываем список
+        });
+        itemsDiv.appendChild(optionDiv);
+    }
+    select.parentNode.appendChild(itemsDiv);
+
+    selectedDiv.addEventListener("click", function () {
+        itemsDiv.style.display = itemsDiv.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!selectedDiv.contains(e.target) && !itemsDiv.contains(e.target)) {
+            itemsDiv.style.display = "none"; // Закрываем список при клике вне него
+        }
+    });
+}
+
 // Активируем или деактивируем кнопку формы записи на сервис
 function toggleSubmitButton() {
     const checkbox = document.getElementById("privacyCheckbox");
@@ -134,7 +195,7 @@ function toggleSubmitButton() {
     submitButton.disabled = !checkbox.checked;
 }
 
-// Валидация формы НАЧАЛО
+// Валидация и отправка формы НАЧАЛО
 // Проверка формы на запрещённые символы
 function validateInput(inputField) {
     const forbiddenChars = /[&<>\"']/;
@@ -187,74 +248,53 @@ function handleFormSubmit(event) {
         return;
     }
 
-    sendToWhatsapp();
-    showConfirmationBanner();
+    // initializeContactForm(myServiceID, myTemplateID);
 
-    // Устанавливаем куки на 10 часов ////////////////////////////////////////
-    // setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
-    setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
+    // Устанавливаем куки на 10 часов
+    setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
+    // setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
 }
 
-document.querySelector("#myForm").addEventListener("submit", handleFormSubmit);
-// Валидация формы КОНЕЦ
-
-// Отправляем данные формы на Whatsapp
-function sendToWhatsapp() {
+// Отправляем данные формы на почту через emailjs
+function initializeContactForm(serviceID, templateID) {
     const datetimepicker = document.getElementById("datetimepicker").value;
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const car = document.getElementById("car").value;
     const service = document.getElementById("service").value;
 
-    const url =
-        "https://wa.me/79529124138?text=" +
-        "ЗАПИСЬ НА СЕРВИС" +
-        "%0a" +
-        "Дата и время: " +
-        datetimepicker +
-        "%0a" +
-        "Имя: " +
-        name +
-        "%0a" +
-        "Телефон: " +
-        phone +
-        "%0a" +
-        "Марка авто: " +
-        car +
-        "%0a" +
-        "Вид работ: " +
-        service +
-        "%0a" +
-        "ПОЖАЛУЙСТА, ПОДТВЕРДИТЕ ЗАПИСЬ!";
+    const templateParams = {
+        datetimepicker,
+        name,
+        phone,
+        car,
+        service,
+    };
 
-    window.open(url, "_blank").focus();
+    emailjs.send(serviceID, templateID, templateParams).then(
+        (response) => {
+            console.log("SUCCESS!", response.status, response.text);
+        },
+        (error) => {
+            console.error("FAILED...", error);
+        }
+    );
 }
+
+const myServiceID = "service_96kca1d";
+const myTemplateID = "template_69ixo3i";
+
+document.getElementById("myForm").addEventListener("submit", handleFormSubmit);
+// Валидация и отправка формы КОНЕЦ
 
 // Появляется баннер подтверждения заявки
 function showConfirmationBanner() {
     const confirmationBanner = document.getElementById("confirmation-banner");
     confirmationBanner.style.display = "flex";
 
-    // Таймер убирает баннер через 10 часов ////////////////////////////////////////
+    // Таймер убирает баннер через 10 часов
     setTimeout(() => {
         confirmationBanner.style.display = "none";
-        // }, 10 * 60 * 60 * 1000); // 10 часов
-    }, 60 * 1000); // 1 минута
+    }, 10 * 60 * 60 * 1000); // 10 часов
+    // }, 60 * 1000); // 1 минута
 }
-
-// // Возвращаемся к тому же месту страницы после отправки данных формы
-// function setupScrollPosition() {
-//     document.getElementById("myForm").onsubmit = function () {
-//         const scrollPosition = window.scrollY;
-//         localStorage.setItem("scrollPosition", scrollPosition);
-//     };
-
-//     window.onload = function () {
-//         const scrollPosition = localStorage.getItem("scrollPosition");
-//         if (scrollPosition) {
-//             window.scrollTo(0, parseInt(scrollPosition, 10));
-//             localStorage.removeItem("scrollPosition");
-//         }
-//     };
-// }
-// setupScrollPosition();

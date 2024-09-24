@@ -368,7 +368,8 @@ h1 {
     padding: 20px;
 }
 .appointment-text h3 {
-    margin: 20px;
+    margin: 10px;
+    font-size: 24px;
 }
 .form {
     width: 85%;
@@ -415,6 +416,39 @@ h1 {
     justify-content: start;
     align-items: start;
     cursor: pointer;
+}
+.custom-select {
+    position: relative;
+    width: 100%;
+    display: flex;
+    text-align: left;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #000;
+    color: #000;
+}
+.select-selected {
+    width: 100%;
+    padding: 5px;
+    color: #b3b3b3;
+    cursor: pointer;
+}
+.select-items {
+    position: absolute;
+    background-color: #fff;
+    max-height: 170px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    color: #000;
+    z-index: 3;
+    display: none;
+}
+.select-items div {
+    padding: 5px;
+    cursor: pointer;
+}
+.select-items div:hover {
+    background-color: #f1f1f1;
 }
 .form__checkbox {
     margin: 10px;
@@ -586,7 +620,7 @@ h3 {
     background-image: url(../images/whatsapp_hover.jpg);
 }
 
-/* Адаптивный дизайн xxx*/
+/* Адаптивный дизайн xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
 @media (max-width: 1200px) {
     .advert .wrap-banner {
