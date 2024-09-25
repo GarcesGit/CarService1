@@ -303,7 +303,7 @@ h1 {
 .oil {
     width: 100%;
     height: 400px;
-    background-color: #ebebe0;
+    background-color: #ececec;
     background-image: url(../images/main_bunner2.jpg);
     background-position: center;
     background-size: cover;
@@ -430,7 +430,7 @@ h1 {
 .select-selected {
     width: 100%;
     padding: 5px;
-    color: #b3b3b3;
+    color: #000;
     cursor: pointer;
 }
 .select-items {
@@ -442,6 +442,7 @@ h1 {
     color: #000;
     z-index: 3;
     display: none;
+    border-radius: 5px;
 }
 .select-items div {
     padding: 5px;
@@ -473,8 +474,7 @@ h1 {
     width: 60%;
     height: 100%;
     padding: 20px;
-    background-color: #3b3b3b;
-    color: #fff;
+    background-color: #fff;
     border-radius: 0 10px 10px 0;
     padding: 20px;
     justify-content: center;
@@ -485,13 +485,14 @@ h1 {
 }
 .confirmation-banner-text {
     width: 90%;
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: rgba(107, 107, 107, 0.6);
+    color: #fff;
+    background-color: #3b3b3b;
     border-radius: 10px;
     line-height: 1.5;
 }
@@ -502,8 +503,8 @@ h1 {
 }
 .adres-block {
     position: relative;
-    top: -220px;
-    left: 55%;
+    top: -150px;
+    left: 50%;
     width: 225px;
     height: 140px;
     padding: 15px;

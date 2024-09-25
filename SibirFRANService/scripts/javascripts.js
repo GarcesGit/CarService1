@@ -248,11 +248,11 @@ function handleFormSubmit(event) {
         return;
     }
 
-    // initializeContactForm(myServiceID, myTemplateID);
+    initializeContactForm(myServiceID, myTemplateID);
 
     // Устанавливаем куки на 10 часов
-    setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
-    // setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
+    // setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
+    setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
 }
 
 // Отправляем данные формы на почту через emailjs
@@ -295,6 +295,6 @@ function showConfirmationBanner() {
     // Таймер убирает баннер через 10 часов
     setTimeout(() => {
         confirmationBanner.style.display = "none";
-    }, 10 * 60 * 60 * 1000); // 10 часов
-    // }, 60 * 1000); // 1 минута
+        // }, 10 * 60 * 60 * 1000); // 10 часов
+    }, 60 * 1000); // 1 минута
 }
