@@ -510,7 +510,6 @@ h1 {
     padding: 20px;
     background-color: #fff;
     border-radius: 0 10px 10px 0;
-    padding: 20px;
     justify-content: center;
     text-align: center;
     align-items: center;
@@ -831,6 +830,9 @@ h3 {
         font-size: 16px;
     }
     .appointment-text {
+        padding: 10px;
+    }
+    #confirmation-banner {
         padding: 10px;
     }
 

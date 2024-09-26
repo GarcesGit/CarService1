@@ -252,8 +252,8 @@ function handleFormSubmit(event) {
     initializeContactForm(myServiceID, myTemplateID);
 
     // Устанавливаем куки на 10 часов
-    // setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
-    setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
+    setCookie("formSubmitted", "true", 0.41667); // 10 часов = 10/24
+    // setCookie("formSubmitted", "true", 1 / 1440); // 1 минута от 1 дня
 }
 
 // Отправляем данные формы на почту через emailjs
@@ -272,14 +272,7 @@ function initializeContactForm(serviceID, templateID) {
         service,
     };
 
-    emailjs.send(serviceID, templateID, templateParams).then(
-        (response) => {
-            console.log("SUCCESS!", response.status, response.text);
-        },
-        (error) => {
-            console.error("FAILED...", error);
-        }
-    );
+    emailjs.send(serviceID, templateID, templateParams).then({});
 }
 
 const myServiceID = "service_96kca1d";
@@ -296,8 +289,8 @@ function showConfirmationBanner() {
     // Таймер убирает баннер через 10 часов
     setTimeout(() => {
         confirmationBanner.style.display = "none";
-        // }, 10 * 60 * 60 * 1000); // 10 часов
-    }, 60 * 1000); // 1 минута
+    }, 10 * 60 * 60 * 1000); // 10 часов
+    // }, 60 * 1000); // 1 минута
 }
 
 //Прокрутить страницу к нужному div при нажатии ссылки
