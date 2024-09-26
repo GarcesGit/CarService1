@@ -31,9 +31,10 @@ function setupScrollPosition() {
 
     window.onload = function () {
         // Проверка наличия согласия на использование cookie и отображение баннера
-        // if (!getCookie("cookie_consent")) {
-        //     document.getElementById("cookie-banner").style.display = "flex";
-        // }
+        if (!getCookie("cookie_consent")) {
+            document.getElementById("cookie-banner").style.cssText =
+                "display: flex; flex-direction: row;";
+        }
 
         // Возвращаемся к тому же месту страницы после отправки данных формы
         const scrollPosition = localStorage.getItem("scrollPosition");
@@ -298,3 +299,18 @@ function showConfirmationBanner() {
         // }, 10 * 60 * 60 * 1000); // 10 часов
     }, 60 * 1000); // 1 минута
 }
+
+//Прокрутить страницу к нужному div при нажатии ссылки
+document.querySelectorAll(".scroll-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href");
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: "smooth",
+            });
+        }
+    });
+});

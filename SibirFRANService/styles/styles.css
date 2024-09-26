@@ -54,14 +54,37 @@ h1 {
 .header-item-group-right {
     float: right;
     justify-content: end;
+    margin-left: 10px;
     align-items: start;
+    line-height: 1.5;
 }
-.header-groups h1 {
-    font-size: 2em;
+.header-item-group-right .contact-item {
+    padding: 5px;
+    border-left: 1px solid #fff;
+}
+.header-title {
+    font-size: 38px;
     font-weight: 700;
+    margin: 10px;
 }
 .header-groups h3 {
     font-size: 1em;
+}
+.header-groups p {
+    font-size: 16px;
+}
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-wrap: wrap;
+    margin: 10px;
+    line-height: 1.5;
+}
+.contact-item img {
+    width: 100px;
+    height: 70px;
+    border-radius: 10px;
 }
 
 #cookie-banner {
@@ -69,11 +92,10 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    flex-direction: row;
     justify-content: center;
     background-color: #000;
     color: #fff;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     display: none;
 }
@@ -97,6 +119,7 @@ h1 {
 
 .main {
     width: 100%;
+    height: 100%;
     background-image: url("../images/main_bunner.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -110,19 +133,15 @@ h1 {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 0 0 30px 0;
+    padding: 0 0 100px 0;
     background-color: rgba(107, 107, 107, 0.4);
 }
-.main .wrap-banner {
-    height: 100%;
-    justify-content: flex-start;
-}
 .main-text {
-    margin-top: 5%;
+    margin-top: 20px;
 }
 .main-text h1 {
     color: #fff;
-    font-size: 2.5em;
+    font-size: 40px;
     font-weight: 700;
     margin-bottom: 20px;
     padding: 0;
@@ -176,20 +195,15 @@ h1 {
     color: #d00b0b;
     font-weight: 700;
 }
-
-.section-title {
-    color: black;
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-align: center;
+.discount-banner p {
+    font-size: 18px;
 }
+
 .service {
     width: 100%;
     display: flex;
-    padding: 50px 0 50px 0;
+    padding: 20px 0 70px 0;
     justify-content: center;
-    background-color: #fff;
 }
 .wrap-service {
     width: 77%;
@@ -200,8 +214,15 @@ h1 {
     align-items: center;
     height: inherit;
 }
-.wrap-service h3 {
-    height: 20px;
+.title_white {
+    color: #fff;
+    font-size: 2em;
+    font-weight: 700;
+    margin: 50px 10px 50px 10px;
+    padding: 20px 50px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(107, 107, 107, 0.7);
 }
 .wrap-service-item {
     width: 100%;
@@ -215,8 +236,8 @@ h1 {
     word-wrap: break-word;
 }
 .service-item {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -238,7 +259,7 @@ h1 {
     border-top: 1px solid rgba(0, 0, 0, 0);
 }
 .service-item a {
-    color: #d00b0b;
+    color: #fff;
     padding: 5px;
 }
 .showNote {
@@ -257,9 +278,12 @@ h1 {
     visibility: hidden;
     position: relative;
     left: 200px;
-    font-size: 11.5px;
+    font-size: 14px;
     text-align: center;
     line-height: 1;
+}
+.service-item-name {
+    font-size: 18px;
 }
 .service-item-name:hover {
     border-bottom: 2px solid #d00b0b;
@@ -302,7 +326,6 @@ h1 {
 
 .oil {
     width: 100%;
-    height: 400px;
     background-color: #ececec;
     background-image: url(../images/main_bunner2.jpg);
     background-position: center;
@@ -312,21 +335,32 @@ h1 {
     display: flex;
     justify-content: center;
 }
-.title_white {
-    color: #fff;
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 20px;
+
+.oil-wrap {
+    width: 80%;
+    height: 80%;
+    background-color: rgba(107, 107, 107, 0.6);
+    border-radius: 10px;
+    border: 2px solid #d00b0b;
+}
+.oil-text {
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
+    color: #fff;
+    line-height: 1.5;
+    border-radius: 10px;
+    font-size: 18px;
 }
 .oil-items {
     display: flex;
     flex-direction: row;
+    margin: 30px;
 }
 .oil-items img {
-    width: 200px;
-    height: 150px;
-    margin: 10px 20px;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
     border-radius: 10px;
 }
 .oil-items figcaption {
@@ -372,7 +406,7 @@ h1 {
     font-size: 24px;
 }
 .form {
-    width: 85%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -435,8 +469,8 @@ h1 {
 }
 .select-items {
     position: absolute;
-    background-color: #fff;
-    max-height: 170px;
+    background-color: #dddddd;
+    max-height: 150px;
     overflow-y: auto;
     border: 1px solid #ccc;
     color: #000;
@@ -455,11 +489,11 @@ h1 {
     margin: 10px;
 }
 .form__text {
-    font-size: 8px;
+    font-size: 10px;
     margin: 10px;
 }
 .form__text a {
-    font-size: 8px;
+    font-size: 10px;
     color: #0075ff;
     text-decoration: underline;
 }
@@ -517,56 +551,36 @@ h1 {
     font-size: 14px;
 }
 
-footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    height: auto;
-    padding: 20px 0;
-}
 .wrap-contact {
+    flex-wrap: wrap;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
     color: #fff;
-    font-size: 0.8em;
+    font-size: 14px;
 }
 h3 {
     padding-bottom: 5px;
 }
-.contact-item-group {
-    display: block;
-    margin: 20px;
-}
-.contact-item-group-title {
-    height: 20%;
-    margin: 10px;
-}
 .contact-item-group-data {
     display: flex;
-    flex-direction: row;
-    height: 80%;
-}
-.contact-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
     flex-wrap: wrap;
-    margin: 15px;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.contact-item img {
-    width: 90px;
-    height: 60px;
-    margin: 5px;
-    border-radius: 10px;
+
+.contact-item-group-data .contact-item {
+    margin: 20px;
 }
+
 .socialmedia {
-    margin: 50px 20px 20px 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
 }
 .socialmedia * {
-    display: block;
     width: 40px;
     height: 40px;
     margin: 20px;
@@ -627,75 +641,47 @@ h3 {
     .advert .wrap-banner {
         width: 100%;
     }
-}
 
-@media (max-width: 1130px) {
+    .header-title {
+        font-size: 32px;
+    }
+    .header-item-group-right p,
+    .header-item-group-right h3,
+    a {
+        font-size: 14px;
+    }
     .contact-item {
         margin: 5px;
     }
-    .contact-item-group-data .contact-item {
-        margin: 15px;
-    }
-    .header-item-group-right {
-        font-size: 0.8em;
-    }
-    .header-item-group-right .contact-item {
-        margin: 5px;
-    }
-    .header-item-group-left .contact-item img {
-        margin: 0;
-    }
-
-    .main-text {
-        margin-top: 7%;
+    .contact-item img {
+        width: 80px;
+        height: 60px;
     }
     .main-text h1 {
-        font-size: 2em;
+        font-size: 32px;
         font-weight: 700;
     }
     .main-text p {
-        font-size: 1.2em;
+        font-size: 20px;
         line-height: 1.2;
     }
 }
 
+@media (max-width: 1010px) {
+    .header-groups {
+        flex-wrap: wrap;
+    }
+    .contact-item {
+        margin: 20px;
+    }
+}
+
 @media (max-width: 900px) {
-    .header-groups h1 {
-        font-size: 1.5em;
-        font-weight: 700;
+    .main-text h1 {
+        font-size: 28px;
     }
-    .header-groups h3 {
-        font-size: 0.8em;
-    }
-    /* .header-groups p,
-    a,
-    a:hover {
-        font-size: 0.7em;
-    } */
-
-    .header-item-group-left .contact-item img {
-        width: 65px;
-        height: 45px;
-    }
-
-    .wrap-contact .contact-item {
-        margin: 5px 15px 5px 15px;
-    }
-    .contact-item-group-data {
-        font-size: 0.8em;
-    }
-    .contact-item-group {
-        margin: 5px;
-    }
-    .contact-item-group-data .contact-item {
-        margin: 10px;
-    }
-    .socialmedia {
-        margin: 40px 10px 20px 10px;
-    }
-
-    .main {
-        min-height: 80%;
+    .main-text p {
+        line-height: 1.2;
     }
 
     .discount-banner {
@@ -751,35 +737,26 @@ h3 {
     }
 }
 
-@media (max-width: 730px) {
-    .header-groups {
-        flex-wrap: wrap;
-    }
-}
-
 @media (max-width: 600px) {
     h1 {
-        padding: 5px 5px;
+        padding: 5px;
     }
-    .header-groups h1 {
-        font-size: 1.2em;
-        font-weight: 700;
+    .header-item-group-right p,
+    .header-item-group-right h3,
+    a {
+        font-size: 12px;
     }
-
-    .header-item-group-left .contact-item img,
     .contact-item img {
-        width: 50px;
-        height: 35px;
+        width: 70px;
+        height: 50px;
     }
 
     .main-text h1 {
-        font-size: 1.4em;
-        font-weight: 700;
+        font-size: 24px;
     }
-    .main-text p {
-        font-size: 1em;
+    .contact-item {
+        margin: 5px;
     }
-
     .model-image {
         width: 115px;
         height: 75px;
@@ -800,44 +777,65 @@ h3 {
     }
 
     .appointment-text h3 {
-        font-size: 16px;
+        font-size: 18px;
     }
     .form__input {
-        font-size: 12px;
+        font-size: 14px;
     }
     .form__input::placeholder {
-        font-size: 12px;
-    }
-    .submit__btn {
-        font-size: 12px;
+        font-size: 16px;
     }
     .xdsoft_datetimepicker,
     .xdsoft_noselect,
     .xdsoft {
         left: 20px !important;
     }
+    .select-items {
+        max-height: 200px;
+    }
 
     .wrap-contact {
         align-items: center;
     }
-    .contact-item {
-        margin: 5px;
-    }
-    .contact-item-group {
-        margin: 0px;
-    }
     .contact-item-group-data {
-        font-size: 0.65em;
+        flex-direction: column;
     }
-    .contact-item-group-data .contact-item {
-        margin: 5px;
-        max-width: 80px;
+}
+
+@media (max-width: 450px) {
+    .header-groups {
+        margin: 10px 5px 10px 5px;
     }
-    .socialmedia img {
-        width: 20px;
-        height: 20px;
+    .header-item-group-left {
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
-    .socialmedia {
-        margin: 40px 10px 20px 5px;
+    .header-title {
+        order: 2;
+    }
+    .citroen_logo {
+        order: 1;
+    }
+    .header-item-group-right {
+        margin: 0;
+    }
+    .header-item-group-right .contact-item {
+        margin: 0;
+    }
+    .header-groups p,
+    .header-groups a {
+        font-size: 10px;
+    }
+
+    .oil-text {
+        font-size: 16px;
+    }
+    .appointment-text {
+        padding: 10px;
+    }
+
+    .contact-item-group-data p,
+    .contact-item-group-data a {
+        font-size: 14px;
     }
 }

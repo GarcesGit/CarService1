@@ -41,13 +41,11 @@
                                     <img src="images/peugeot_logo .jpg" />
                                 </div>
                                 <div class="header-title">
-                                    <h1>
-                                        <span style="color: #3369b5">Sibir</span
-                                        ><span>FRAN</span
-                                        ><span style="color: #d71730">Service</span>
-                                    </h1>
+                                    <span style="color: #3369b5">Sibir</span
+                                    ><span>FRAN</span
+                                    ><span style="color: #d71730">Service</span>
                                 </div>
-                                <div class="contact-item">
+                                <div class="contact-item citroen_logo">
                                     <img src="images/citroen_logo.jpg" />
                                 </div>
                             </div>
@@ -55,8 +53,8 @@
                                 <div class="contact-item">
                                     <h3>АДРЕС</h3>
                                     <p>
-                                        Солнечная аллея, 10 к.1,<br />СТ Калинка, с.
-                                        Каменка,<br />Новосибирская область
+                                        Солнечная аллея, 10 к.1,<br />с. Каменка,<br />Новосибирская
+                                        область
                                     </p>
                                 </div>
                                 <div class="contact-item">
@@ -126,7 +124,7 @@
             </section>
             <section class="service">
                 <div class="wrap-service">
-                    <h1 class="section-title">УСЛУГИ АВТОСЕРВИСА</h1>
+                    <h1 class="title_white">УСЛУГИ АВТОСЕРВИСА</h1>
                     <div class="wrap-service-item">
                         <div
                             class="service-item service-item_background dvigatel revealator-zoomin"
@@ -265,11 +263,26 @@
             </section>
             <section class="oil">
                 <div class="wrap-banner">
-                    <h1 class="title_white">КАЧЕСТВЕННЫЕ РАСХОДНЫЕ <br />МАТЕРИАЛЫ</h1>
-                    <div class="oil-items model">
-                        <img src="images/shell.jpg" />
-                        <img src="images/mann.jpg" />
-                        <img src="images/zic.jpg" />
+                    <h1 class="title_white">РАСХОДНЫЕ МАТЕРИАЛЫ</h1>
+                    <div class="oil-wrap">
+                        <div class="oil-text">
+                            <p>
+                                Автосервис SibirFRANService использует качественные
+                                расходные материалы.
+                            </p>
+                            <p>В нашем ассортименте проверенные и надежные бренды.</p>
+                            <p>Мы заботимся о каждом элементе ремонта!</p>
+                        </div>
+                        <div class="oil-items model">
+                            <img src="images/total.jpg" />
+                            <img src="images/zic.jpg" />
+                            <img src="images/mann.jpg" />
+                            <img src="images/shell.jpg" />
+                            <img src="images/filtron.jpg" />
+                            <img src="images/hengst.jpg" />
+                            <img src="images/sidem.jpg" />
+                            <img src="images/lavr.jpg" />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -287,6 +300,7 @@
                                 id="datetimepicker"
                                 placeholder="Дата и время *"
                                 value=""
+                                readonly
                             />
                             <input
                                 type="text"
@@ -403,7 +417,7 @@
                 </div>
                 <div></div>
             </section>
-            <!-- <section class="map">
+            <section class="map">
                 <div id="map" style="width: 100%; height: 315px"></div>
                 <div class="adres-block revealator-slideup revealator-delay5">
                     <img src="images/logo.jpg" width="50px" height="50px" />
@@ -429,28 +443,28 @@
                     }
                 </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEJaWglm--N9SQ55NMtQAl0MJpwO7a-iQ&callback=myMap"></script>
-            </section> -->
+            </section>
         </main>
         <footer>
             <div class="wrap-contact">
-                <div class="contact-item">
-                    <img src="images/peugeot_logo .jpg" />
-                    <img src="images/citroen_logo.jpg" />
-                </div>
-                <div class="contact-item-group">
-                    <div class="contact-item-group-title">
-                        <h2>
-                            <span style="color: #3369b5">Sibir</span><span>FRAN</span
-                            ><span style="color: #d71730">Service</span>
-                        </h2>
+                <div class="header-item-group-left">
+                    <div class="contact-item">
+                        <img src="images/peugeot_logo .jpg" />
                     </div>
-                    <div class="contact-item-group-data">
+                    <div class="header-title">
+                        <span style="color: #3369b5">Sibir</span><span>FRAN</span
+                        ><span style="color: #d71730">Service</span>
+                    </div>
+                    <div class="contact-item citroen_logo">
+                        <img src="images/citroen_logo.jpg" />
+                    </div>
+                </div>
+                <div class="contact-item-group-data">
+                    <div class="contact-item-group-data-left">
                         <div class="contact-item">
                             <h3>АДРЕС</h3>
                             <p>Солнечная аллея, 10 к.1, СТ Калинка,</p>
                             <p>с. Каменка, Новосибирская область</p>
-                            <h3>НАИМЕНОВАНИЕ КОМПАНИИ или ИП</h3>
-                            <p>ОГРН или ИНН ИП</p>
                         </div>
                         <div class="contact-item">
                             <h3>ТЕЛЕФОНЫ</h3>
@@ -460,9 +474,21 @@
                             <a href="tel:+79513654598"
                                 ><i class="fas fa-phone"></i>+7 951 365 4598</a
                             >
+                        </div>
+                        <div class="contact-item">
                             <h3>НАПИСАТЬ НАМ</h3>
                             <p>carservicensk2024@gmail.com</p>
                         </div>
+
+                        <div class="contact-item">
+                            <h3>
+                                НАИМЕНОВАНИЕ КОМПАНИИ<br />
+                                или ИП
+                            </h3>
+                            <p>ОГРН или ИНН ИП</p>
+                        </div>
+                    </div>
+                    <div class="contact-item-group-data-right">
                         <div class="contact-item">
                             <h3>ВРЕМЯ РАБОТЫ</h3>
                             <p>Пн-Сб 10:00–20:00</p>
@@ -470,22 +496,30 @@
                         </div>
                         <div class="contact-item">
                             <h3>КЛИЕНТАМ</h3>
-                            <a href="">Услуги автосервиса</a>
-                            <a href="">Скидки</a>
-                            <a href="">Запись на сервис</a>
+                            <a href=".service" class="scroll-link">Услуги автосервиса</a>
+                            <a href=".model" class="scroll-link">Скидки</a>
+                            <a href=".appointment" class="scroll-link"
+                                >Запись на сервис</a
+                            >
                             <a href="privacy.txt" target="_blank"
                                 >Политика конфиденциальности</a
                             >
                         </div>
+                        <div class="socialmedia">
+                            <a
+                                href="https://api.whatsapp.com/send?phone=79513654598"
+                                class="whatsapp"
+                                target="_blank"
+                            >
+                            </a>
+                            <a
+                                href="https://vk.com/sibirfranservice"
+                                class="vk"
+                                target="_blank"
+                            >
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="socialmedia">
-                    <a
-                        href="https://api.whatsapp.com/send?phone=79513654598"
-                        class="whatsapp"
-                    >
-                    </a>
-                    <a href="https://vk.com/sibirfranservice" class="vk"> </a>
                 </div>
             </div>
         </footer>

@@ -37,7 +37,7 @@
 .revealator-rotateleft,
 .revealator-rotateright {
     /* Default effect duration */
-    transition: all 400ms;
+    transition: all 200ms;
 }
 
 /* Fade effect */
@@ -183,7 +183,7 @@
 }
 
 .revealator-delay3 {
-    transition-delay: 300ms !important;
+    transition-delay: 100ms !important;
 }
 
 .revealator-delay3.revealator-below,
