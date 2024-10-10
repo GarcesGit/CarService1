@@ -31,10 +31,10 @@ function setupScrollPosition() {
 
     window.onload = function () {
         // Проверка наличия согласия на использование cookie и отображение баннера
-        if (!getCookie("cookie_consent")) {
-            document.getElementById("cookie-banner").style.cssText =
-                "display: flex; flex-direction: row;";
-        }
+        // if (!getCookie("cookie_consent")) {
+        //     document.getElementById("cookie-banner").style.cssText =
+        //         "display: flex; flex-direction: row;";
+        // }
 
         // Возвращаемся к тому же месту страницы после отправки данных формы
         const scrollPosition = localStorage.getItem("scrollPosition");
@@ -109,11 +109,26 @@ document.addEventListener("DOMContentLoaded", function () {
         let input = document.getElementById("phone");
 
         input.addEventListener("input", phoneMask);
-        input.addEventListener("focus", phoneMask);
+        input.addEventListener("focus", handleFocus);
         input.addEventListener("blur", phoneMask);
+        input.addEventListener("keydown", handleKeyDown);
+
+        function handleFocus() {
+            if (this.value === "") {
+                this.value = "+7 (___) ___-__-__";
+                setCursorPosition(this, 4);
+            }
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === "Escape") {
+                this.value = "+7 (___) ___-__-__";
+                setCursorPosition(this, 4);
+            }
+        }
 
         function phoneMask(event) {
-            let blank = "+_ (___) ___-__-__";
+            let blank = "+7 (___) ___-__-__";
             let i = 0;
             let val = this.value.replace(/\D/g, "").replace(/^8/, "7");
 
@@ -122,8 +137,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 return i >= val.length ? "" : char;
             });
 
-            if (event.type == "blur") {
-                if (this.value.length == 2) this.value = "";
+            if (event.type === "blur") {
+                if (this.value.length === 2 || this.value === blank) {
+                    this.value = "";
+                }
             } else {
                 setCursorPosition(this, this.value.length);
             }
@@ -172,7 +189,7 @@ function initializeCustomSelect(selectId) {
                 div.classList.remove("same-as-selected");
             });
             this.classList.add("same-as-selected");
-            itemsDiv.style.display = "none"; // Закрываем список
+            itemsDiv.style.display = "none";
         });
         itemsDiv.appendChild(optionDiv);
     }
@@ -184,7 +201,7 @@ function initializeCustomSelect(selectId) {
 
     document.addEventListener("click", function (e) {
         if (!selectedDiv.contains(e.target) && !itemsDiv.contains(e.target)) {
-            itemsDiv.style.display = "none"; // Закрываем список при клике вне него
+            itemsDiv.style.display = "none";
         }
     });
 }
